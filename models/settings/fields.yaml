@@ -1,0 +1,15 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    is_enabled:
+        label: bedard.blogapi::lang.settings.is_enabled
+        comment: bedard.blogapi::lang.settings.is_enabled_comment
+        type: switch
+        span: left
+
+    cache:
+        label: bedard.blogapi::lang.settings.cache
+        comment: bedard.blogapi::lang.settings.cache_comment
+        span: right
