@@ -12,10 +12,23 @@ A simple HTTP API for [RainLab.Blog](https://github.com/rainlab/blog-plugin).
 
 **Route::** `(get) /api/rainlab/blog/categories`
 
+| Param  | Description                                                        |
+|--------|--------------------------------------------------------------------|
+| select | CSV of columns to select.                                          |
+| order  | Comma seperated column and direction to sort by (example `id,asc`) |
+| with   | CSV of relationships to eager load.                                |
+| skip   | Number of results to skip.                                         |
+| take   | Number of results to take.                                         |
+
 <a name="category"></a>
 ### Category
 
 **Route:** `(get) /api/rainlab/blog/categories/{id}`
+
+| Param  | Description                                                        |
+|--------|--------------------------------------------------------------------|
+| select | CSV of columns to select.                                          |
+| with   | CSV of relationships to eager load.                                |
 
 <a name="posts"></a>
 ### Posts
@@ -29,16 +42,6 @@ A simple HTTP API for [RainLab.Blog](https://github.com/rainlab/blog-plugin).
 | with   | CSV of relationships to eager load.                                |
 | skip   | Number of results to skip.                                         |
 | take   | Number of results to take.                                         |
-
-**Response**
-```js
-{
-    total: 5, // total number of published posts
-    posts: [
-        // query results
-    ],
-}
-```
 
 <a name="post"></a>
 ### Post
