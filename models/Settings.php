@@ -25,21 +25,64 @@ class Settings extends Model
     public $settingsFields = 'fields.yaml';
 
 
-        /**
-         * @var array Validation
-         */
-        public $rules = [
-            'cache' => 'integer|min:0',
-        ];
+    /**
+     * @var array Validation
+     */
+    public $rules = [
+        'cache_categories' => 'integer|min:0',
+        'cache_category' => 'integer|min:0',
+        'cache_post' => 'integer|min:0',
+        'cache_posts' => 'integer|min:0',
+    ];
 
     /**
-     * Minutes to cache results.
+     * Get the minutes to cache a list of categories.
+     *
+     * @return int|boolean
+     */
+    public static function cacheCategories()
+    {
+        return self::getCache('cache_categories');
+    }
+
+    /**
+     * Get the minutes to cache a category.
+     *
+     * @return int|boolean
+     */
+    public static function cacheCategory()
+    {
+        return self::getCache('cache_category');
+    }
+
+    /**
+     * Get the minutes to cache a post.
+     *
+     * @return int|boolean
+     */
+    public static function cachePost()
+    {
+        return self::getCache('cache_post');
+    }
+
+    /**
+     * Get the minutes to cache a list of posts.
+     *
+     * @return int|boolean
+     */
+    public static function cachePosts()
+    {
+        return self::getCache('cache_post');
+    }
+
+    /**
+     * Get a cache value.
      *
      * @return integer|boolean
      */
-    public static function cache()
+    protected static function getCache($field)
     {
-        $cache = trim(self::get('cache'), '');
+        $cache = trim(self::get($field), '');
 
         return strlen($cache) > 0 ? (int) $cache : false;
     }

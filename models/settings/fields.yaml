@@ -9,7 +9,26 @@ fields:
         type: switch
         span: left
 
-    cache:
-        label: bedard.blogapi::lang.settings.cache
-        comment: bedard.blogapi::lang.settings.cache_comment
+    cache_category:
+        label: bedard.blogapi::lang.settings.cache_category
+        comment: bedard.blogapi::lang.settings.cache_category_comment
+        placeholder: bedard.blogapi::lang.settings.cache_placeholder
+        span: left
+
+    cache_categories:
+        label: bedard.blogapi::lang.settings.cache_categories
+        comment: bedard.blogapi::lang.settings.cache_categories_comment
+        placeholder: bedard.blogapi::lang.settings.cache_placeholder
+        span: right
+
+    cache_post:
+        label: bedard.blogapi::lang.settings.cache_post
+        comment: bedard.blogapi::lang.settings.cache_post_comment
+        placeholder: bedard.blogapi::lang.settings.cache_placeholder
+        span: left
+
+    cache_posts:
+        label: bedard.blogapi::lang.settings.cache_posts
+        comment: bedard.blogapi::lang.settings.cache_posts_comment
+        placeholder: bedard.blogapi::lang.settings.cache_placeholder
         span: right

@@ -2,9 +2,9 @@
 
 use Bedard\BlogApi\Classes\QueryStringBuilder;
 use Bedard\BlogApi\Models\Settings;
-use RainLab\Blog\Models\Post;
+use RainLab\Blog\Models\Category;
 
-class PostRepository
+class CategoryRepository
 {
     /**
      * @var \Bedard\BlogApi\Classes\QueryStringBuilder
@@ -29,10 +29,10 @@ class PostRepository
      */
     public function find($slug, array $params = [])
     {
-        $query = Post::isPublished()->whereSlug($slug);
+        $query = Category::whereSlug($slug);
         $this->builder->with($query, $params);
         $this->builder->select($query, $params);
-        $this->builder->cache($query, Settings::cachePost());
+        $this->builder->cache($query, Settings::cacheCategory());
 
         return $query->firstOrFail();
     }
@@ -45,23 +45,23 @@ class PostRepository
      */
     public function get(array $params = [])
     {
-        $cache = Settings::cachePosts();
+        $cache = Settings::cacheCategories();
 
-        // count the total posts
-        $totalQuery = Post::isPublished();
+        // count the total categories
+        $totalQuery = (new Category)->newQuery();
         $this->builder->cache($totalQuery, $cache);
         $total = $totalQuery->count();
 
-        // fetch posts
-        $postsQuery = Post::isPublished();
-        $this->builder->with($postsQuery, $params);
-        $this->builder->select($postsQuery, $params);
-        $this->builder->skip($postsQuery, $params);
-        $this->builder->take($postsQuery, $params, $total);
-        $this->builder->orderBy($postsQuery, $params);
-        $this->builder->cache($postsQuery, $cache);
-        $posts = $postsQuery->get();
+        // fetch categories
+        $categoriesQuery = (new Category)->newQuery();
+        $this->builder->with($categoriesQuery, $params);
+        $this->builder->select($categoriesQuery, $params);
+        $this->builder->skip($categoriesQuery, $params);
+        $this->builder->take($categoriesQuery, $params, $total);
+        $this->builder->orderBy($categoriesQuery, $params);
+        $this->builder->cache($categoriesQuery, $cache);
+        $categories = $categoriesQuery->get();
 
-        return [ 'total' => $total, 'posts' => $posts ];
+        return [ 'total' => $total, 'categories' => $categories ];
     }
 }

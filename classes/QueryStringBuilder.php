@@ -8,6 +8,20 @@ use October\Rain\Database\Builder;
 class QueryStringBuilder
 {
     /**
+     * Cache a query.
+     *
+     * @param  \October\Rain\Database\Builder   $query
+     * @param  int|bool                         $cache
+     * @return void
+     */
+    public function cache(Builder &$query, $cache)
+    {
+        if ($cache) {
+            $query->remember($cache);
+        }
+    }
+
+    /**
      * Order a query.
      *
      * @param  \October\Rain\Database\Builder   $query
